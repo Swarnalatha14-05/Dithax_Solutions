@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Course Enrollment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- EmailJS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI", Arial, sans-serif;
+}
+
+body{
+  background:linear-gradient(120deg,#eef2f7,#dfe7f1);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.form-box{
+  background:#ffffff;
+  width:100%;
+  max-width:520px;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.form-box h2{
+  text-align:center;
+  color:#1f2937;
+  margin-bottom:6px;
+}
+
+.form-box p{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:25px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+  color:#374151;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+}
+
+textarea{
+  resize:none;
+  height:90px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  background:#2563eb;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+.success{
+  text-align:center;
+  color:green;
+  margin-top:12px;
+  font-weight:600;
+}
+.error{
+  text-align:center;
+  color:red;
+  margin-top:12px;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+  <h2>Course Enrollment Form</h2>
+  <p>Fill in your details to enroll</p>
+
+  <div class="form-group">
+    <label>Student Name</label>
+    <input type="text" id="name" required>
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" id="email" required>
+  </div>
+
+  <div class="form-group">
+    <label>Mobile Number</label>
+    <input type="tel" id="mobile" required>
+  </div>
+
+  <div class="form-group">
+    <label>Select Course</label>
+    <select id="course" required>
+      <option value="">-- Select Course --</option>
+      <option>Java Full Stack</option>
+      <option>Python Full Stack</option>
+      <option>Frontend Development</option>
+      <option>UI / UX Design</option>
+      <option>Data Science</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Message (Optional)</label>
+    <textarea id="message"></textarea>
+  </div>
+
+  <button onclick="sendEnrollment()">Submit Enrollment</button>
+
+  <div class="success" id="successMsg"></div>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<script>
+/* =========================
+   MODAL CONTROLS
+========================= */
+function openForm() {
+  document.getElementById("formModal").style.display = "flex";
+}
+
+function closeForm() {
+  document.getElementById("formModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+window.onclick = function (e) {
+  const modal = document.getElementById("formModal");
+  if (e.target === modal) {
+    closeForm();
+  }
+};
+
+/* =========================
+   TAB SWITCHING (UI SAFE)
+========================= */
+function showTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  // Remove active class from all buttons
+  document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  // Show selected tab
+  document.getElementById(tabId).style.display = "block";
+
+  // ✅ Safely find the clicked button (NO UI CHANGE)
+  const buttons = document.querySelectorAll(".tab-buttons button");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("onclick")?.includes(tabId)) {
+      btn.classList.add("active");
+    }
+  });
+}
+/* =========================
+   FORM SUBMISSION (FIXED)
+========================= */
+document.querySelector("#formModal form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const inputs = e.target.querySelectorAll("input, select");
+  const btn = e.target.querySelector("button");
+
+  const data = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    phone: inputs[2].value.trim(),
+    program: inputs[3].value
+  };
+
+  // Basic validation
+  if (!data.name || !data.email || !data.phone || !data.program) {
+    alert("⚠️ Please fill all fields");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    // Check if the HTTP status is 200-299
+    if (!res.ok) {
+       throw new Error('Network response was not ok');
+    }
+
+   /* Inside your fetch try block */
+const result = await res.json();
+
+// This now matches the "success": True from Python
+if (result.success) {
+    alert("✅ Enquiry sent successfully!");
+    e.target.reset();
+    closeForm();
+} else {
+    alert("❌ Failed: " + (result.message || "Server rejected the request"));
+}
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("❌ Connection failed. Ensure your backend server is running on port 5000.");
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "Submit";
+  }
+});
+</script>
+
+</body>
+</html>
