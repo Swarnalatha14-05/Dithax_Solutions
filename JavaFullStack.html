@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Full stack Web Development - Dithax Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+.top-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.course-image {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 350px;
+}
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-details {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-info, .company-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.course-info h2 { margin: 0 0 1rem; font-size: 1.8rem; }
+.price { font-size: 1.3rem; font-weight: 700; color: #f20a0a; margin-bottom: 1rem; }
+
+.enroll-btn {
+  display: inline-block;
+  background: #154d21;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.email-box {
+  background: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.company-btns { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.company-btns button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.enquire { background: #154d21; color: #fff; }
+.call { background: #f3f4f6; color: #111827; }
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.tab-buttons { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.tab-buttons button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.tab-buttons button.active { background: #050a16; color: #fff; }
+
+.tab-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Syllabus */
+details {
+  background: #f8f9fa;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border-left: 6px solid #6f42c1;
+}
+summary {
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+
+.module-number { color: #6f42c1; font-weight: bold; }
+.module-title { font-weight: 600; }
+
+.content {
+  padding: 15px 25px 25px;
+  border-top: 1px solid #eee;
+}
+
+/* ===== MODAL FORM (ADDED ONLY THIS) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  .top-section { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-section">
+  <div class="course-image">
+    <img src="/images/javafullstack.png" alt="fullstcak web dev Course">
+  </div>
+
+  <div class="course-details">
+    <div class="course-info">
+      <h2>Java Full Stack Development</h2>
+      <div class="price">Starts from ₹5,550.00</div>
+      <button class="enroll-btn" onclick="openForm()">Enroll Now</button>
+    </div>
+
+    <div class="company-card">
+      <h3>Dithax Solutions.</h3>
+      <div class="email-box">dithaxsolutions@gmail.com</div>
+      <div class="company-btns">
+        <button class="enquire" onclick="openForm()">Enquire Now</button>
+        <button class="call">📞 Call Now</button>
+      </div>
+      <p>Dithax Pvt. Ltd. is a dynamic edtech company committed to bridging the gap between academic learning and real-world application.</p>
+    </div>
+  </div>
+</div>
+<!-- MODAL FORM -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <h2>Enroll Now</h2>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <select required>
+        <option value="">Select Program</option>
+        <option>AI Course</option>
+        <option>Data Science</option>
+        <option>Web Development</option>
+        <option>Cloud Computing</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab-buttons">
+    <button class="active" onclick="showTab('overview')">Overview</button>
+    <button onclick="showTab('syllabus')">Syllabus</button>
+  </div>
+
+  <div id="overview" class="tab-content">
+    <h3>What you gain?</h3>
+  <p>
+    Our mission is to redefine learning with industry-relevant projects, internships, and courses designed to build job-ready skills. 
+    Whether it’s AI, Data Science, Web Development, or Cloud Computing — our programs combine theory with practice for career success.
+    <ul>
+        <li>High Demand for Web Developers</li>
+        <li>End-to-End Development Skills</li>
+        <li>Versatile Career Opportunities</li>
+        <li>Competitive Salaries</li>
+        <li>Enables Freelancing & Remote Work</li>
+        <li>Rapidly Growing Industry</li>
+        <li>Mastery of Frontend, Backend, and Database Technologies</li>
+    </ul>
+    </p>
+  </div>
+
+  <div id="syllabus" class="tab-content" style="display:none;">
+    <h3>Syllabus</h3>
+    <div class="container">
+     
+        <details>
+        <summary>
+            <span class="module-number">Module 01</span>
+            <span class="module-title"> Introduction to Full Stack Development</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Overview of Full Stack Development.</b></li>
+                <li><b>Introduction to Java Full Stack.</b> </li>
+                <li><b>Technologies and Tools Used.</b></li>
+                <li><b>Architecture: MVC, Microservices</b></li>
+                <li><b>Setting Up Development Environment</b>
+                    <ul>
+                        <li><b>JDK, IntelliJ/Eclipse</b></li>
+                        <li><b>Version Control (Git, GitHub)</b></li>
+                    </ul>
+
+            </li>
+                
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary>
+            <span class="module-number">Module 02</span>
+            <span class="module-title"> Core Java</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Introduction to Java.</b></li>
+                <li><b>OOP Concepts.</b></li>
+                <ul>
+                    <li><b>OOP Concepts</b></li>
+                    <li><b>Inheritance, Polymorphism, Encapsulation</b></li>
+                    <li><b>Abstraction and Interfaces</b></li>
+                </ul>
+                <li><b> Exception Handling.</b> </li>
+                <li><b>Collections Framework</b></li>
+                <li><b>Multithreading and Concurrency</b></li>
+                <li><b>File Handling and I/O</b></li>    
+                <li><b>Java 8 Features: Streams, Lambda, Functional Interfaces</b></li>   
+                <li><b>JDBC (Java Database Connectivity)</b></li>   
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 03</span>
+            <span class="module-title">Frontend Technologies</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <h3><strong>HTML, CSS, and Bootstrap</strong></h3>
+                <li><b>HTML5 Basics and Semantic Elements</b></li>
+                <li><b> CSS3 and Responsive Design.</b></li>
+                <li><b> Bootstrap 5 for UI Enhancement.</b></li>
+            </ul>
+            <h3><strong>JavaScript and DOM Manipulation</strong></h3>
+            <ul>
+                <li><b>JavaScript Basics and ES6 Features</b></li>
+                <li><b>DOM Manipulation and Events</b></li>
+                <li><b>AJAX and Fetch API</b></li>
+                <li><b>Introduction to jQuery</b></li>
+            </ul>
+                <h3><strong>React.js (Optional / Modern Approach)</strong></h3>
+                <ul>
+                <li><b>Introduction to React.js</b></li>
+                <li><b>Components, Props, and State</b></li>
+                <li><b>React Router and Hooks</b></li>
+                <li><b>REST API Integration with React</b></li>
+                <li><b>State Management with Redux </b></li>
+                </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 04</span>
+            <span class="module-title"> Database Management</span>
+        </summary>
+        <div class="content">
+            <h3><strong>SQL and Relational Databases</strong></h3>
+            <ul>
+                <li><b>Introduction to Databases</b></li>
+                <li><b>SQL Basics: CRUD Operations.</b></li>
+                <li><b> Joins, Views, Stored Procedures</b></li>
+                <li><b>Database Normalization</b></li>
+            </ul>
+            <h3><strong>MongoDB (Optional / NoSQL)</strong></h3>
+            <ul>
+                <li><b>Introduction to NoSQL</b></li>
+                <li><b>CRUD Operations with MongoDB</b></li>
+                <li><b>Schema Design and Best Practices</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 05</span>
+            <span class="module-title"> Backend with Java</span>
+        </summary>
+        <div class="content">
+            <h3><strong>Spring Framework</strong></h3>
+            <ul>
+                <li><b> Introduction to Spring Framework</b></li>
+                <li><b> Spring Boot Basics</b></li>
+                <li><b>Dependency Injection and IoC</b></li>
+                <li><b>RESTful APIs with Spring Boot</b></li>
+                <li><b>Spring MVC and Request Handling</b></li>
+                <li><b>Spring Data JPA and Hibernate</b></li>
+                <li><b>Exception Handling and Validation</b></li>
+                <li><b>CRUD Operations Using REST APIs</b></li>
+                <li><b>Swagger Documentation</b></li>
+            </ul>
+            <h3><strong>Security and Authentication</strong></h3>
+            <ul>
+                <li><b>Spring Security Basics</b></li>
+                <li><b>JWT Authentication and Authorization</b></li>
+                <li><b>OAuth2 (Optional)</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 06</span>
+            <span class="module-title">API Development and Integration</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>RESTful API Concepts.</b></li>
+                <li><b> Consuming APIs in Frontend.</b></li>
+                <li><b> Testing APIs Using Postman.</b></li>
+                <li><b>API Security Best Practices</b></li>
+            </ul>
+        </div>
+    </details>
+        <details>
+        <summary>
+            <span class="module-number">Module 07</span>
+            <span class="module-title"> Advanced Backend Concepts</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Microservices Architecture</b></li>
+                <li><b>Building Microservices Using Spring Boot.</b></li>
+                <li><b> API Gateway and Service Discovery.</b></li>
+                <li><b>Docker and Containerization</b></li>
+                <li><b>Kubernetes (Optional)</b></li>
+                <li><b>Message Brokers: RabbitMQ/Kafka (Optional)</b></li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 08</span>
+            <span class="module-title">Deployment and DevOps</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> CI/CD Pipelines with Jenkins/GitHub Actions.</b></li>
+                <li><b> Deployment on AWS/Heroku.</b></li>
+                <li><b> Monitoring and Logging.</b></li>
+                <li><b>Version Control with Git and GitHub</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 09</span>
+            <span class="module-title">Project Work</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Developing a Full Stack Application</b></li>
+                <li><b>Developing a Full Stack Application</b></li>
+                <li><b>Backend with Spring Boot</b></li>
+                <li><b>Database Integration (MySQL/MongoDB)</b></li>
+                <li><b>API Integration and Security</b></li>
+                <li><b>Deployment on Cloud Platforms</b></li>
+            </ul>
+        </div>
+    </details>
+    
+        </div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   MODAL CONTROLS
+========================= */
+function openForm() {
+  document.getElementById("formModal").style.display = "flex";
+}
+
+function closeForm() {
+  document.getElementById("formModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+window.onclick = function (e) {
+  const modal = document.getElementById("formModal");
+  if (e.target === modal) {
+    closeForm();
+  }
+};
+
+/* =========================
+   TAB SWITCHING (UI SAFE)
+========================= */
+function showTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  // Remove active class from all buttons
+  document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  // Show selected tab
+  document.getElementById(tabId).style.display = "block";
+
+  // ✅ Safely find the clicked button (NO UI CHANGE)
+  const buttons = document.querySelectorAll(".tab-buttons button");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("onclick")?.includes(tabId)) {
+      btn.classList.add("active");
+    }
+  });
+}
+/* =========================
+   FORM SUBMISSION (FIXED)
+========================= */
+document.querySelector("#formModal form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const inputs = e.target.querySelectorAll("input, select");
+  const btn = e.target.querySelector("button");
+
+  const data = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    phone: inputs[2].value.trim(),
+    program: inputs[3].value
+  };
+
+  // Basic validation
+  if (!data.name || !data.email || !data.phone || !data.program) {
+    alert("⚠️ Please fill all fields");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    // Check if the HTTP status is 200-299
+    if (!res.ok) {
+       throw new Error('Network response was not ok');
+    }
+
+   /* Inside your fetch try block */
+const result = await res.json();
+
+// This now matches the "success": True from Python
+if (result.success) {
+    alert("✅ Enquiry sent successfully!");
+    e.target.reset();
+    closeForm();
+} else {
+    alert("❌ Failed: " + (result.message || "Server rejected the request"));
+}
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("❌ Connection failed. Ensure your backend server is running on port 5000.");
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "Submit";
+  }
+});
+</script>
+
+</body>
+</html>

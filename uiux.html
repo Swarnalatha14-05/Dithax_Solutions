@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Course - Dithax Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+.top-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.course-image {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 350px;
+}
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-details {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-info, .company-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.course-info h2 { margin: 0 0 1rem; font-size: 1.8rem; }
+.price { font-size: 1.3rem; font-weight: 700; color: #f20a0a; margin-bottom: 1rem; }
+
+.enroll-btn {
+  display: inline-block;
+  background: #154d21;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.email-box {
+  background: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.company-btns { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.company-btns button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.enquire { background: #154d21; color: #fff; }
+.call { background: #f3f4f6; color: #111827; }
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.tab-buttons { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.tab-buttons button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.tab-buttons button.active { background: #050a16; color: #fff; }
+
+.tab-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Syllabus */
+details {
+  background: #f8f9fa;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border-left: 6px solid #6f42c1;
+}
+summary {
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+
+.module-number { color: #6f42c1; font-weight: bold; }
+.module-title { font-weight: 600; }
+
+.content {
+  padding: 15px 25px 25px;
+  border-top: 1px solid #eee;
+}
+
+/* ===== MODAL FORM (ADDED ONLY THIS) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  .top-section { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-section">
+  <div class="course-image">
+    <img src="/images/u.jpeg" alt="I/UX Course">
+  </div>
+
+  <div class="course-details">
+    <div class="course-info">
+      <h2>UI/UX Course</h2>
+      <div class="price">Starts from ₹5,550.00</div>
+      <button class="enroll-btn" onclick="openForm()">Enroll Now</button>
+    </div>
+
+    <div class="company-card">
+      <h3>Dithax Solutions.</h3>
+      <div class="email-box">dithaxsolutions@gmail.com</div>
+      <div class="company-btns">
+        <button class="enquire" onclick="openForm()">Enquire Now</button>
+        <button class="call">📞 Call Now</button>
+      </div>
+      <p>Dithax Pvt. Ltd. is a dynamic edtech company committed to bridging the gap between academic learning and real-world application.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FORM -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <h2>Enroll Now</h2>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <select required>
+        <option value="">Select Program</option>
+        <option>AI Course</option>
+        <option>Data Science</option>
+        <option>Web Development</option>
+        <option>Cloud Computing</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tab-buttons">
+    <button class="active" onclick="showTab('overview')">Overview</button>
+    <button onclick="showTab('syllabus')">Syllabus</button>
+  </div>
+
+  <div id="overview" class="tab-content">
+    <h3>What you gain?</h3>
+  <p>
+    Our mission is to redefine learning with industry-relevant projects, internships, and courses designed to build job-ready skills. 
+    Whether it’s AI, Data Science, Web Development, or Cloud Computing — our programs combine theory with practice for career success.
+    <ul>
+        <li>Increasing Demand Across All Digital Platforms</li>
+        <li>High demand for skilled CAD professionals</li>
+        <li>Crucial for Product Success & Brand Identity</li>
+        <li>Career Opportunities in UX Research, UI Design, Prototyping & More</li>
+        <li>Blend of Creativity, Psychology, and Technology</li>  
+        <li>High Impact in App & Web Development</li>
+    </ul>
+    </p>
+  </div>
+
+  <div id="syllabus" class="tab-content" style="display:none;">
+    <h3>Syllabus</h3>
+    <div class="container">
+     
+        <details>
+        <summary>
+            <span class="module-number">Module 01</span>
+            <span class="module-title"> Introduction to UI/UX Design</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Fundamentals of UI & UX</b></li>
+                <li><b>Human-Centered Design Thinking</b> </li>
+                <li><b>Role of UI/UX in Product Development</b></li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary>
+            <span class="module-number">Module 02</span>
+            <span class="module-title">User Research & Analysis</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>User Personas & Journey Mapping</b></li>
+                <li><b>Qualitative & Quantitative Research</b> </li>
+                <li><b>Competitor & Heuristic Analysis</b> </li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 03</span>
+            <span class="module-title"> Information Architecture & Wireframing</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Site Maps & User Flows</b></li>
+                <li><b>Low-Fidelity Wireframes</b></li>
+                <li><b>Tools: Balsamiq, Whimsical</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 04</span>
+            <span class="module-title"> Visual Design Principles & Tools</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Color Theory, Typography, Layout </b></li>
+                <li><b>Branding & Design Aesthetics</b></li>
+                <li><b>Tools: Figma, Adobe XD, Sketch</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 05</span>
+            <span class="module-title"> Prototyping & User Testing</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Interactive Prototyping </b></li>
+                <li><b> Usability Testing & Feedback Loops</b></li>
+                <li><b>Tools: Figma, InVision, Maze</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 06</span>
+            <span class="module-title">Interaction Design & Microinteractions</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Motion & Animation in Design</b></li>
+                <li><b> Designing for Engagement</b></li>
+                <li><b> Tools: Principle, After Effects</b></li>
+            </ul>
+        </div>
+    </details>
+        <details>
+        <summary>
+            <span class="module-number">Module 07</span>
+            <span class="module-title">  Mobile & Web Design Standards</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Responsive & Adaptive Design</b></li>
+                <li><b>iOS vs Android Design Guidelines</b></li>
+                <li><b> Design Handoff & Developer Collaboration</b></li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 08</span>
+            <span class="module-title">Design Systems & Accessibility</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Creating & Maintaining Design Systems</b></li>
+                <li><b>Inclusive Design & WCAG Standards</b></li>
+                <li><b> Tools: Storybook, Zeroheight</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 09</span>
+            <span class="module-title">Industry Applications & Case Studies</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>UI/UX in FinTech, HealthTech, E-Commerce</b></li>
+                <li><b>Real-World Product Design Challenges</b></li>
+                <li><b>Case Studies from Leading Companies</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 10</span>
+            <span class="module-title">Capstone Projects & Portfolio Development</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>End-to-End UI/UX Design Projects</b></li>
+                <li><b> Design Thinking Documentation</b></li>
+               <li><b> Portfolio Creation & Review</b></li>
+               <li><b>Interview Preparation & Mock Sessions</b></li>
+            </ul>
+        </div>
+    </details>
+    
+        </div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   MODAL CONTROLS
+========================= */
+function openForm() {
+  document.getElementById("formModal").style.display = "flex";
+}
+
+function closeForm() {
+  document.getElementById("formModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+window.onclick = function (e) {
+  const modal = document.getElementById("formModal");
+  if (e.target === modal) {
+    closeForm();
+  }
+};
+
+/* =========================
+   TAB SWITCHING (UI SAFE)
+========================= */
+function showTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  // Remove active class from all buttons
+  document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  // Show selected tab
+  document.getElementById(tabId).style.display = "block";
+
+  // ✅ Safely find the clicked button (NO UI CHANGE)
+  const buttons = document.querySelectorAll(".tab-buttons button");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("onclick")?.includes(tabId)) {
+      btn.classList.add("active");
+    }
+  });
+}
+/* =========================
+   FORM SUBMISSION (FIXED)
+========================= */
+document.querySelector("#formModal form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const inputs = e.target.querySelectorAll("input, select");
+  const btn = e.target.querySelector("button");
+
+  const data = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    phone: inputs[2].value.trim(),
+    program: inputs[3].value
+  };
+
+  // Basic validation
+  if (!data.name || !data.email || !data.phone || !data.program) {
+    alert("⚠️ Please fill all fields");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    // Check if the HTTP status is 200-299
+    if (!res.ok) {
+       throw new Error('Network response was not ok');
+    }
+
+   /* Inside your fetch try block */
+const result = await res.json();
+
+// This now matches the "success": True from Python
+if (result.success) {
+    alert("✅ Enquiry sent successfully!");
+    e.target.reset();
+    closeForm();
+} else {
+    alert("❌ Failed: " + (result.message || "Server rejected the request"));
+}
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("❌ Connection failed. Ensure your backend server is running on port 5000.");
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "Submit";
+  }
+});
+</script>
+
+</body>
+</html>

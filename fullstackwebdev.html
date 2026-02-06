@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full stack Web Development - Dithax Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+.top-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.course-image {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 350px;
+}
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-details {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-info, .company-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.course-info h2 { margin: 0 0 1rem; font-size: 1.8rem; }
+.price { font-size: 1.3rem; font-weight: 700; color: #f20a0a; margin-bottom: 1rem; }
+
+.enroll-btn {
+  display: inline-block;
+  background: #154d21;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.email-box {
+  background: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.company-btns { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.company-btns button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.enquire { background: #154d21; color: #fff; }
+.call { background: #f3f4f6; color: #111827; }
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.tab-buttons { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.tab-buttons button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.tab-buttons button.active { background: #050a16; color: #fff; }
+
+.tab-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Syllabus */
+details {
+  background: #f8f9fa;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border-left: 6px solid #6f42c1;
+}
+summary {
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+
+.module-number { color: #6f42c1; font-weight: bold; }
+.module-title { font-weight: 600; }
+
+.content {
+  padding: 15px 25px 25px;
+  border-top: 1px solid #eee;
+}
+
+/* ===== MODAL FORM (ADDED ONLY THIS) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  .top-section { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-section">
+  <div class="course-image">
+    <img src="/images/weddev" alt="fullstack web dev Course">
+  </div>
+
+  <div class="course-details">
+    <div class="course-info">
+      <h2>FULL STACK WEB DEVELOPMENT</h2>
+      <div class="price">Starts from ₹5,550.00</div>
+      <button class="enroll-btn" onclick="openForm()">Enroll Now</button>
+    </div>
+
+    <div class="company-card">
+      <h3>Dithax Solutions.</h3>
+      <div class="email-box">dithaxsolutions@gmail.com</div>
+      <div class="company-btns">
+        <button class="enquire" onclick="openForm()">Enquire Now</button>
+        <button class="call">📞 Call Now</button>
+      </div>
+      <p>Dithax Pvt. Ltd. is a dynamic edtech company committed to bridging the gap between academic learning and real-world application.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL FORM -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <h2>Enroll Now</h2>
+
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+
+      <select required>
+        <option value="">Select Program</option>
+        <option>AI Course</option>
+        <option>Data Science</option>
+        <option>Web Development</option>
+        <option>Cloud Computing</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab-buttons">
+    <button class="active" onclick="showTab('overview')">Overview</button>
+    <button onclick="showTab('syllabus')">Syllabus</button>
+  </div>
+
+  <div id="overview" class="tab-content">
+    <h3>What you gain?</h3>
+  <p>
+    Our mission is to redefine learning with industry-relevant projects, internships, and courses designed to build job-ready skills. 
+    Whether it’s AI, Data Science, Web Development, or Cloud Computing — our programs combine theory with practice for career success.
+    <ul>
+        <li>High Demand for Web Developers</li>
+        <li>End-to-End Development Skills</li>
+        <li>Versatile Career Opportunities</li>
+        <li>Competitive Salaries</li>
+        <li>Enables Freelancing & Remote Work</li>
+        <li>Rapidly Growing Industry</li>
+        <li>Mastery of Frontend, Backend, and Database Technologies</li>
+    </ul>
+    </p>
+  </div>
+
+  <div id="syllabus" class="tab-content" style="display:none;">
+    <h3>Syllabus</h3>
+    <div class="container">
+     
+        <details>
+        <summary>
+            <span class="module-number">Module 01</span>
+            <span class="module-title"> Introduction to Web Development</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Understanding Web Development Basics.</b></li>
+                <li><b>Client-Server Architecture.</b> </li>
+                <li><b>Evolution of Web Technologies.</b></li>
+                <li><b>Setting up the Development Environment</b></li>
+            </ul>
+        </div>
+    </details>
+
+    <details>
+        <summary>
+            <span class="module-number">Module 02</span>
+            <span class="module-title"> Frontend Development (HTML, CSS, JavaScript)</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> HTML5 Semantic Elements.</b></li>
+                <li><b>CSS3 Styling, Flexbox & Grid.</b> </li>
+                <li><b> JavaScript Fundamentals & ES6+ Features.</b> </li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 03</span>
+            <span class="module-title">Responsive Web Design & UI/UX Basics</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Mobile-First Approach</b></li>
+                <li><b> CSS Frameworks (Bootstrap, Tailwind CSS).</b></li>
+                <li><b> Introduction to UI/UX Principles.</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 04</span>
+            <span class="module-title"> JavaScript & Modern Frameworks</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>DOM Manipulation & Event Handling</b></li>
+                <li><b>JavaScript ES6+ Concepts.</b></li>
+                <li><b> React.js / Vue.js / Angular (One Framework Deep Dive).</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 05</span>
+            <span class="module-title"> Backend Development (Node.js, Express.js)</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> SQL Databases (MySQL, PostgreSQL).</b></li>
+                <li><b> NoSQL Databases (MongoDB) .</b></li>
+                <li><b>CRUD Operations & Data Modeling .</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 06</span>
+            <span class="module-title">Pathology & Pharmacology</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Mechanisms of Disease.</b></li>
+                <li><b> General & Systemic Pathology.</b></li>
+                <li><b> Drug Mechanisms, Interactions, and Adverse Reactions.</b></li>
+            </ul>
+        </div>
+    </details>
+        <details>
+        <summary>
+            <span class="module-number">Module 07</span>
+            <span class="module-title"> Authentication & Security</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>User Authentication (JWT, OAuth)</b></li>
+                <li><b>Data Encryption & Web Security Practices.</b></li>
+                <li><b> Handling CORS & API Security.</b></li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 08</span>
+            <span class="module-title">RESTful APIs & GraphQL</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Building RESTful APIs.</b></li>
+                <li><b> Introduction to GraphQL.</b></li>
+                <li><b> API Testing with Postman.</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 09</span>
+            <span class="module-title">Deployment & DevOps</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Version Control (Git, GitHub)</b></li>
+                <li><b>Hosting Platforms (Heroku, Netlify, Vercel)</b></li>
+                <li><b>CI/CD Pipelines & Containerization (Docker)</b></li>
+            </ul>
+        </div>
+    </details>
+        <details>
+        <summary>
+            <span class="module-number">Module 10</span>
+            <span class="module-title">Capstone Projects & Industry Case Studies</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b> Hands-on Full Stack Projects.</b></li>
+                <li><b> Real-world Web Applications (E-commerce, Social Media, etc.).</b></li>
+                <li><b>Industry Collaboration & Research-Based Projects</b></li>
+            </ul>
+        </div>
+    </details>
+    
+        </div>
+  </div>
+</div>
+
+<script>
+/* =========================
+   MODAL CONTROLS
+========================= */
+function openForm() {
+  document.getElementById("formModal").style.display = "flex";
+}
+
+function closeForm() {
+  document.getElementById("formModal").style.display = "none";
+}
+
+/* Close modal when clicking outside */
+window.onclick = function (e) {
+  const modal = document.getElementById("formModal");
+  if (e.target === modal) {
+    closeForm();
+  }
+};
+
+/* =========================
+   TAB SWITCHING (UI SAFE)
+========================= */
+function showTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  // Remove active class from all buttons
+  document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  // Show selected tab
+  document.getElementById(tabId).style.display = "block";
+
+  // ✅ Safely find the clicked button (NO UI CHANGE)
+  const buttons = document.querySelectorAll(".tab-buttons button");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("onclick")?.includes(tabId)) {
+      btn.classList.add("active");
+    }
+  });
+}
+/* =========================
+   FORM SUBMISSION (FIXED)
+========================= */
+document.querySelector("#formModal form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const inputs = e.target.querySelectorAll("input, select");
+  const btn = e.target.querySelector("button");
+
+  const data = {
+    name: inputs[0].value.trim(),
+    email: inputs[1].value.trim(),
+    phone: inputs[2].value.trim(),
+    program: inputs[3].value
+  };
+
+  // Basic validation
+  if (!data.name || !data.email || !data.phone || !data.program) {
+    alert("⚠️ Please fill all fields");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerText = "Submitting...";
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    // Check if the HTTP status is 200-299
+    if (!res.ok) {
+       throw new Error('Network response was not ok');
+    }
+
+   /* Inside your fetch try block */
+const result = await res.json();
+
+// This now matches the "success": True from Python
+if (result.success) {
+    alert("✅ Enquiry sent successfully!");
+    e.target.reset();
+    closeForm();
+} else {
+    alert("❌ Failed: " + (result.message || "Server rejected the request"));
+}
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("❌ Connection failed. Ensure your backend server is running on port 5000.");
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "Submit";
+  }
+});
+</script>
+
+</body>
+</html>
