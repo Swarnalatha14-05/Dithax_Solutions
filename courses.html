@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DITHAX Solutions | 30+ Professional Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 0%, #2a0e4a 0%, #050505 50%, #000000 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+        }
+        
+        /* Watermark Styles */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background-image: url('https://i.postimg.cc/VNCjKT5p/dithax-logo-removebg-preview.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05; /* Subtle watermark */
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dithax-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .course-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1; /* Ensure cards stay above watermark */
+        }
+        .course-card:hover {
+            border-color: #a855f7;
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px -10px rgba(168, 85, 247, 0.4);
+        }
+        .course-image {
+            filter: saturate(1.5) contrast(1.1);
+        }
+        nav, header, footer, main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Modal Overlay */
+    #form-modal {
+        display: none; 
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        width: 420px;
+        padding: 35px 30px 40px;
+        background: linear-gradient(180deg, #111, #000);
+        border-radius: 28px;
+        border: 2px solid #ff00cc;
+        box-shadow: 0 0 30px rgba(255, 0, 204, 0.35);
+        position: relative;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 22px;
+        font-size: 26px;
+        color: #ff4d4d;
+        cursor: pointer;
+    }
+
+    .modal-content h2 { margin-bottom: 30px; font-size: 34px; font-weight: 700; color: #fff; }
+    .modal-content label { display: block; margin-bottom: 8px; font-size: 18px; font-weight: 600; color: #fff; }
+    .modal-content input, .modal-content select {
+        width: 100%; padding: 14px 16px; margin-bottom: 22px; border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.08);
+        color:black; font-size: 15px; outline: none;
+    }
+    .modal-content input:focus, .modal-content select:focus { border-color: #ff00cc; background: rgba(255, 255, 255, 0.12); }
+    
+    .submit-btn {
+        width: 100%; padding: 16px; border: none; border-radius: 16px;
+        background: linear-gradient(90deg, #ff00cc, #a100ff);
+        color: #fff; font-size: 20px; font-weight: 700; cursor: pointer;
+        transition: all 0.3s;
+    }
+    .submit-btn:hover { box-shadow: 0 5px 18px rgba(255, 0, 204, 0.45); transform: translateY(-2px); }
+    </style>
+
+    <div id="form-modal">
+    <div class="modal-content">
+        <div class="close-modal" id="closeBtn">&times;</div>
+        <h2>Get Started</h2>
+        <form>
+            <label>Name</label>
+            <input type="text" placeholder="Enter your name">
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+            <label>Phone</label>
+            <input type="tel" placeholder="Enter your phone number">
+            <label>Program Interested</label>
+            <select>
+                <option>-- Select Program --</option>
+                <option>FullStackWeb Development</option>
+                <option>Artificial Intelligence</option>
+                <option>Cyber Security</option>
+                <option>Machine Learning</option>
+                <option>Catia</option>
+                <option>Java Programming</option>
+                <option>C Programming</option>
+                <option>AWS</option>
+                <option>Marketing</option>
+                <option>Construction Planning and Management</option>
+                <option>Data Analytics</option>
+                <option>Stock Marketing</option>
+                <option>Food Technology</option>
+                <option>React JS</option>
+                <option>Data Science</option>
+                <option>Python Programming</option>
+                <option>UI/UX Design</option>
+                <option>Digital Marketing</option>
+                <option>Solid Works</option>
+                <option>IoT & Robotics</option>
+                <option>Java FullStack Development</option>
+                <option>Business Analytics</option>
+                <option>AutoCAD</option>
+                <option>Human Resources</option>
+                <option>Finance Management</option>
+                <option>SAP</option>
+                <option>VLSI</option>
+                <option>C++</option>
+                <option>ChatGPT/GenAI</option>
+                <option>Bio Technology</option>
+                <option>Video Editing</option>
+                <option>Linux</option>
+                <option>Power BI</option>
+                <option>SQL</option>
+            </select>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+</head>
+<body>
+
+    <nav class="flex items-center justify-between px-8 py-4 bg-black/60 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="flex items-center">
+            <img src="https://i.postimg.cc/VNCjKT5p/dithax-logo-removebg-preview.png" alt="DITHAX Logo" class="h-20 w-auto">
+        </div>
+        
+        <button class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:opacity-90 transition shadow-lg shadow-purple-500/20">
+            Get Started
+        </button>
+    </nav>
+
+    <header class="text-center pt-20 pb-12 px-4">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 dithax-gradient-text tracking-tight">Our Courses</h1>
+        <p class="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+            Choose from over 30+ expert-led programs designed to bridge the gap between learning and industry-ready expertise.
+        </p>
+    </header>
+
+    <main class="max-w-[1400px] mx-auto px-6 pb-32">
+        <div id="course-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            </div>
+    </main>
+
+    <footer class="bg-black border-t border-purple-900/30 pt-20 pb-10 px-10 text-center">
+        <img src="https://i.postimg.cc/VNCjKT5p/dithax-logo-removebg-preview.png" alt="DITHAX Logo" class="h-16 mx-auto mb-6">
+        <p class="text-gray-500 max-w-md mx-auto mb-10 italic">"Building Tomorrow's Leaders Today with Dithax Solutions."</p>
+        <div class="flex justify-center space-x-6 mb-10 text-2xl">
+            <a href="https://www.instagram.com/dithaxsolutions?igsh=aDN3MTljNndnM2Zj" class="text-gray-400 hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/dithaxsolutions/" class="text-gray-400 hover:text-blue-600"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <p class="text-gray-700 text-sm">© 2026 DITHAX SOLUTIONS. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const courses = [
+            { title: "FullStack Web Development", desc: "Full-stack mastery with React, Node, and Next.js.", img: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=400", link: "fullstack.html" },            
+            { title: "Artificial Intelligence", desc: "Master LLMs, Neural Networks, and Deep Learning.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Cyber Security", desc: "Ethical hacking, VAPT, and Network Defense.", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Machine Learing", desc: "Machine learning helps us learn patterns from data so we can make predictions or decisions without being explicitly programmed.", img: "https://www.naukri.com/campus/career-guidance/wp-content/uploads/2024/07/what-is-machine-learning.jpg", link: "fullstack.html"  },
+            { title: "Catia", desc: "CATIA helps us learn to design, model, and analyze complex 3D mechanical and industrial products.", img: "https://cdn.mindmajix.com/courses/catia-training-110620.png", link: "fullstack.html"  },
+            { title: "Java Programming", desc: "Java programming helps us learn to build secure, platform-independent applications using object-oriented concepts", img: "http://getwallpapers.com/wallpaper/full/b/2/0/491662.jpg", link: "fullstack.html"  },
+            { title: "C Programming", desc: "C programming helps us learn low-level programming, memory management, and how software interacts with hardware..", img: "https://www.seedinfotech.com/wp-content/uploads/2023/01/C_Programming-1-1170x728.jpg", link: "fullstack.html"  },
+            { title: "AWS", desc: "AWS helps us learn how to build, deploy, and manage scalable applications using cloud computing services.", img: "https://www.hji.us/wp-content/uploads/2022/03/Amazon-AWS-Everything-You-Need-To-Know-About-Amazon-Web-Services-4-1024x576.jpeg", link: "fullstack.html"  },
+            { title: "Marketing", desc: "Marketing helps us learn how to understand customer needs, promote products effectively, and grow a business", img: "http://getwallpapers.com/wallpaper/full/a/e/5/298759.jpg", link: "fullstack.html"  },
+            { title: "Construction Planning And Management", desc: "Construction planning and management helps us learn how to plan, schedule, coordinate, and control construction projects efficiently.", img: "https://tse2.mm.bing.net/th/id/OIP.GbdmDcPRCtKE4UEdS4QtZAHaER?pid=Api&P=0&h=180", link: "fullstack.html"  },
+            { title: "Data Analytics", desc: "Data analytics helps us learn how to analyze data to find insights, trends, and support better decision-making.", img: "https://images.yourstory.com/cs/2/96eabe90392211eb93f18319e8c07a74/DATAANALYTICS-1686234812978.png", link: "fullstack.html"  },
+            { title: "Stock Marketing", desc: "Stock market learning helps us understand how to analyze investments, manage risk, and make informed trading decisions.", img: "https://images.rawpixel.com/image_social_square/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0xMC1hb20tMjA5MzUtb2xqMDQyMHdvcmQtMDUtc3RvY2ttZXJrZXQuanBn.jpg?s=nefk0ycj533f_yW7OrO3MUN9DLclpLGnKqXOR75llBk", link: "fullstack.html"  },
+            { title: "Food Technology", desc: "Food technology helps us learn how to process, preserve, and improve food quality and safety using scientific methods.", img: "https://www.dairyprocessing.com/ext/resources/2021/5/FoodTechConcept_Lead1.jpg?height=667&t=1622143032&width=1080", link: "fullstack.html"  },
+            { title: "React JS", desc: "React JS helps us learn how to build fast, interactive, and reusable user interfaces for web applications.", img: "https://cdn.hashnode.com/res/hashnode/image/upload/v1625576291410/by9FKZ3ek.png", link: "fullstack.html"  },
+            { title: "Data Science", desc: "Big Data analytics with Python, R, and Tableau.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Python Programming", desc: "From core basics to advanced automation.", img: "https://puresourcecode.com/wp-content/uploads/2020/05/Python-programming.jpg", link: "fullstack.html"  },
+            { title: "UI/UX Design", desc: "User-centric design with Figma and Adobe XD.", img: "https://wallpapercave.com/wp/wp9775513.jpg", link: "fullstack.html"  },
+            { title: "Digital Marketing", desc: "SEO, SEM, and Social Media Growth Hacking.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Solid Works", desc: "3D CAD design for mechanical engineering.", img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "IoT & Robotics", desc: "Building smart systems with Arduino & Raspberry Pi.", img: "https://thumbs.dreamstime.com/b/future-smart-automation-ai-ml-digital-twin-g-big-data-iot-ar-vr-robotics-industry-explore-industrial-landscape-276124443.jpg", link: "fullstack.html"  },
+            { title: "Java FullStack Development", desc: "Enterprise Java, Spring Boot, and Microservices.", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Business Analytics", desc: "Data-driven decision making with Power BI.", img: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "AutoCAD", desc: "Precision drafting for civil and architects.", img: "https://www.mappingskills.com/img/course/500x360/autocad.jpg", link: "fullstack.html"  },
+            { title: "Human Resources", desc: "Modern HR management and payroll systems.", img: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Finance Management", desc: "Investment banking and portfolio management.", img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "SAP Systems", desc: "FICO, SCM, and HCM module expertise.", img: "https://t4.ftcdn.net/jpg/04/74/19/77/360_F_474197731_U4rprIWgfeqBoRp5JXrXgIrrzNvuFixR.jpg", link: "fullstack.html"  },
+            { title: "VLSI Design", desc: "Circuit design and FPGA programming.", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "C++ Programming", desc: "High-performance coding and game engines.", img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Chat GPT / GenAI", desc: "Prompt engineering for modern automation.", img: "https://wallpapers.com/images/hd/chatgpt-6zhb18pem7l42g36.jpg", link: "fullstack.html"  },
+            { title: "Bio Technology", desc: "Data science in healthcare and genetics.", img: "https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Video Editing", desc: "Premiere Pro and After Effects mastery.", img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "Linux", desc: "Shell scripting and server management.", img: "https://wallpapers.com/images/hd/kali-linux-world-of-codes-7mlby4gm74twk697.jpg", link: "fullstack.html"  },
+            { title: "Power BI", desc: "Advanced data visualization dashboards.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400", link: "fullstack.html"  },
+            { title: "SQL Mastery", desc: "Complex queries and database optimization.", img: "https://static.vecteezy.com/system/resources/thumbnails/020/076/233/small_2x/hand-showing-sql-word-with-database-server-background-sql-commands-are-mainly-categorized-into-five-categories-as-ddl-dql-dml-dcl-tcl-concept-of-structured-query-language-code-3d-render-photo.jpg", link: "fullstack.html" },
+           
+        ];
+
+        const container = document.getElementById('course-container');
+
+        courses.forEach(course => {
+            container.innerHTML += `
+                <div class="course-card rounded-3xl overflow-hidden flex flex-col">
+                    <div class="relative h-52">
+                        <img src="${course.img}" alt="${course.title}" class="course-image w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <span class="absolute top-4 left-4 bg-red-600 text-[10px] font-black tracking-widest px-3 py-1 rounded-full shadow-lg">LIVE & RECORDED</span>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold mb-3 text-white">${course.title}</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">${course.desc}</p>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button 
+  onclick="window.location.href='${course.link}'"
+  class="w-full py-3 bg-white/5 hover:bg-purple-600 border border-purple-500/30 text-white rounded-2xl font-bold transition-all duration-300">
+    View Details
+</button>
+
+
+                    </div>
+                </div>
+            `;
+        });
+
+       
+const modal = document.getElementById('form-modal');
+const openBtn = document.querySelector('nav button');
+const closeBtn = document.getElementById('closeBtn');
+
+
+openBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
+
+
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+    </script>
+</body>
+</html>
