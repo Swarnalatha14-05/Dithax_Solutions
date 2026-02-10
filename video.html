@@ -1,0 +1,474 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C Course - Nxtsync</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+.top-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.course-image {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 350px;
+}
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-details {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-info, .company-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.course-info h2 { margin: 0 0 1rem; font-size: 1.8rem; }
+.price { font-size: 1.3rem; font-weight: 700; color: #f20a0a; margin-bottom: 1rem; }
+
+.enroll-btn {
+  display: inline-block;
+  background: #154d21;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.email-box {
+  background: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.company-btns { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.company-btns button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.enquire { background: #154d21; color: #fff; }
+.call { background: #f3f4f6; color: #111827; }
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.tab-buttons { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.tab-buttons button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.tab-buttons button.active { background: #050a16; color: #fff; }
+
+.tab-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Syllabus */
+details {
+  background: #f8f9fa;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border-left: 6px solid #6f42c1;
+}
+summary {
+  padding: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+
+.module-number { color: #6f42c1; font-weight: bold; }
+.module-title { font-weight: 600; }
+
+.content {
+  padding: 15px 25px 25px;
+  border-top: 1px solid #eee;
+}
+
+/* ===== MODAL FORM (ADDED ONLY THIS) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media(max-width: 900px) {
+  .top-section { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-section">
+  <div class="course-image">
+    <img src="images/Video-Editing-Course-Perinthalmanna.webp" alt="videoediting Course">
+  </div>
+
+  <div class="course-details">
+    <div class="course-info">
+      <h2>Video Editing</h2> 
+      <div class="price">Starts from ₹5,550.00</div>
+      <button class="enroll-btn" onclick="openForm()">Enroll Now</button>
+    </div>
+
+    <div class="company-card">
+      <h3>Dithax Solutions.</h3>
+      <div class="email-box">dithaxsolutions@gmail.com</div>
+      <div class="company-btns">
+        <button class="enquire" onclick="openForm()">Enquire Now</button>
+        <button class="call">📞 Call Now</button>
+      </div>
+      <p>Dithax Pvt. Ltd. is a dynamic edtech company committed to bridging the gap between academic learning and real-world application.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FORM -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+
+    <h2 id="formTitle">Submit Details</h2>
+
+ <form id="enrollmentForm">
+  <input type="text" id="name" name="name" placeholder="Full Name" required>
+  <input type="email" id="email" name="email" placeholder="Email Address" required>
+  <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+  <select id="program" name="program" required>
+    <option value="">-- Select Program --</option>
+    <option>-- Select Program --</option>
+                <option>FullStackWeb Development</option>
+                <option>Artificial Intelligence</option>
+                <option>Cyber Security</option>
+                <option>Machine Learning</option>
+                <option>Catia</option>
+                <option>Java Programming</option>
+                <option>C Programming</option>
+                <option>AWS</option>
+                <option>Marketing</option>
+                <option>Construction Planning and Management</option>
+                <option>Data Analytics</option>
+                <option>Stock Marketing</option>
+                <option>Food Technology</option>
+                <option>React JS</option>
+                <option>Data Science</option>
+                <option>Python Programming</option>
+                <option>UI/UX Design</option>
+                <option>Digital Marketing</option>
+                <option>Solid Works</option>
+                <option>IoT & Robotics</option>
+                <option>Java FullStack Development</option>
+                <option>Business Analytics</option>
+                <option>AutoCAD</option>
+                <option>Human Resources</option>
+                <option>Finance Management</option>
+                <option>SAP</option>
+                <option>VLSI</option>
+                <option>C++</option>
+                <option>ChatGPT/GenAI</option>
+                <option>Bio Technology</option>
+                <option>Video Editing</option>
+                <option>Linux</option>
+                <option>Power BI</option>
+                <option>SQL</option>
+  </select>
+
+  <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+    <p id="msg"></p>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tab-buttons">
+    <button class="active" onclick="showTab('overview')">Overview</button>
+    <button onclick="showTab('syllabus')">Syllabus</button>
+  </div>
+
+  <div id="overview" class="tab-content">
+    <h3>What you gain?</h3>
+  <p>
+    Our mission is to redefine learning with industry-relevant projects, internships, and courses designed to build job-ready skills. 
+    Whether it’s AI, Data Science, Web Development, or Cloud Computing — our programs combine theory with practice for career success.
+  <ul>
+    <li>Core Programming Language for Modern Software Development</li>
+    <li>Best Suited for Low-Level, System, and Embedded Programming</li>
+    <li>Strengthens Logical Reasoning and Analytical Skills</li>
+    <li>Extensively Used in Operating Systems, IoT, and Robotics Applications</li>
+    <li>Builds a Strong Foundation for C++, Java, and Python</li>
+    <li>High Industry Demand in Core and Performance-Critical Software Roles</li>
+</ul>
+
+    </p>
+  </div>
+<div id="syllabus" class="tab-content" style="display:none;">
+  <h3>Syllabus</h3>
+  <div class="container">
+
+    <details>
+      <summary>
+        <span class="module-number">Module 01</span>
+        <span class="module-title">Introduction to Video Editing</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>History, Scope & Evolution of Video Editing</b></li>
+          <li><b>Types of Editing: Linear vs Non-Linear</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 02</span>
+        <span class="module-title">Editing Software Basics</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Interface Walkthrough: Premiere Pro / Final Cut</b></li>
+          <li><b>Importing, Cutting, Trimming & Organizing Clips</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 03</span>
+        <span class="module-title">Audio & Music Integration</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Voice-Over Syncing Techniques</b></li>
+          <li><b>Background Music, Sound Effects & Audio Transitions</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 04</span>
+        <span class="module-title">Visual Enhancements</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Color Correction & Color Grading Basics</b></li>
+          <li><b>Filters, LUTs & Cinematic Visual Looks</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 05</span>
+        <span class="module-title">Motion Graphics & Titles</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Intro & Outro Creation</b></li>
+          <li><b>Lower-Thirds, Titles & Kinetic Typography</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 06</span>
+        <span class="module-title">Social Media & Commercial Editing</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Vertical vs Horizontal Video Formats</b></li>
+          <li><b>Editing for Reels, Shorts, Advertisements & Campaigns</b></li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="module-number">Module 07</span>
+        <span class="module-title">Capstone Portfolio Project</span>
+      </summary>
+      <div class="content">
+        <ul>
+          <li><b>Client-Based Editing Scenario</b></li>
+          <li><b>End-to-End Project: Briefing, Editing, Revisions & Final Delivery</b></li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</div>
+
+</div>
+<script>
+// Function to handle form submission
+document.getElementById('enrollmentForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent page refresh
+    
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
+
+    // Prepare the data to match your Flask "request.form" expectation
+    const formData = new FormData(this);
+
+    try {
+        // Replace with your actual backend URL if deployed (e.g., https://your-app.herokuapp.com/submit)
+        const response = await fetch('http://127.0.0.1:5000/submit', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Application submitted successfully!");
+            this.reset(); // Clear form
+            closeForm();  // Close modal
+        } else {
+            alert("Submission failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Could not connect to the server.");
+    } finally {
+        submitBtn.innerText = "Submit";
+        submitBtn.disabled = false;
+    }
+});
+
+// Your existing UI functions
+function openForm() { document.getElementById("formModal").style.display = "flex"; }
+function closeForm() { document.getElementById("formModal").style.display = "none"; }
+function showTab(tabId) {
+    document.getElementById('overview').style.display = "none";
+    document.getElementById('syllabus').style.display = "none";
+    document.getElementById(tabId).style.display = "block";
+    const buttons = document.querySelectorAll('.tab-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+  
+window.onclick = function(e) {
+  if (e.target === document.getElementById("formModal")) closeForm();
+};
+
+/* =========================
+   TAB SWITCHING (UI SAFE)
+========================= */
+function showTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  // Remove active class from all buttons
+  document.querySelectorAll(".tab-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  // Show selected tab
+  document.getElementById(tabId).style.display = "block";
+
+  // ✅ Safely find the clicked button (NO UI CHANGE)
+  const buttons = document.querySelectorAll(".tab-buttons button");
+  buttons.forEach(btn => {
+    if (btn.getAttribute("onclick")?.includes(tabId)) {
+      btn.classList.add("active");
+    }
+  });
+}
+
+  
+</script>
+
+</body>
+</html>

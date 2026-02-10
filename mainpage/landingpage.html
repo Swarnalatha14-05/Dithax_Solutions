@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dithax Solutions | Build Your Future</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .social-links {
   display: flex;
@@ -449,7 +449,7 @@
 
   .hero { max-width: 1200px; margin: 80px auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 50px; }
   .hero-text h1 { font-size: 56px; line-height: 1.1; }
-  .hero-text h1 span { background: linear-gradient(90deg, #ff00cc, #8e2de2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-text h1 span { background: linear-gradient(90deg, #ff00cc, #8e2de2); -webkit-text-fill-color: transparent;-webkit-background-clip: text; }
   .hero-text p { margin-top: 20px; font-size: 1.1rem; opacity: 0.85; max-width: 480px; }
   .hero-buttons { margin-top: 30px; display: flex; gap: 20px; }
   .btn-outline { background: transparent; border: 1px solid #ff00cc; color: #ff00cc; }
@@ -514,63 +514,30 @@
 <div class="modal-overlay" id="getStartedModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2>Get Started</h2>
-      <span class="close-modal" id="closeModal">&times;</span>
-    </div>
-    <form>
+      <button class="btn btn-outline open-modal-btn">Get Started</button>
+
+<button class="btn btn-outline" onclick="openLeadModal('Get Started')">Get Started</button>
       <div class="form-group">
         <label>Name</label>
-        <input type="text" placeholder="Enter your name">
+        <input type="text" name="name" placeholder="Enter your name" required>
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" placeholder="Enter your email">
+        <input type="email" name="email" placeholder="Enter your email" required>
       </div>
       <div class="form-group">
         <label>Phone</label>
-        <input type="tel" placeholder="Enter your phone number">
+        <input type="tel" name="phone" placeholder="Enter your phone number" required>
       </div>
       <div class="form-group">
         <label>Program Interested</label>
-        <select>
-           <option>-- Select Program --</option>
-                <option>FullStackWeb Development</option>
-                <option>Artificial Intelligence</option>
-                <option>Cyber Security</option>
-                <option>Machine Learning</option>
-                <option>Catia</option>
-                <option>Java Programming</option>
-                <option>C Programming</option>
-                <option>AWS</option>
-                <option>Marketing</option>
-                <option>Construction Planning and Management</option>
-                <option>Data Analytics</option>
-                <option>Stock Marketing</option>
-                <option>Food Technology</option>
-                <option>React JS</option>
-                <option>Data Science</option>
-                <option>Python Programming</option>
-                <option>UI/UX Design</option>
-                <option>Digital Marketing</option>
-                <option>Solid Works</option>
-                <option>IoT & Robotics</option>
-                <option>Java FullStack Development</option>
-                <option>Business Analytics</option>
-                <option>AutoCAD</option>
-                <option>Human Resources</option>
-                <option>Finance Management</option>
-                <option>SAP</option>
-                <option>VLSI</option>
-                <option>C++</option>
-                <option>ChatGPT/GenAI</option>
-                <option>Bio Technology</option>
-                <option>Video Editing</option>
-                <option>Linux</option>
-                <option>Power BI</option>
-                <option>SQL</option>
-        </select>
+        <select name="program" required>
+           <option value="">-- Select Program --</option>
+           <option>FullStackWeb Development</option>
+           <option>Artificial Intelligence</option>
+           </select>
       </div>
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
     </form>
   </div>
 </div>
@@ -584,35 +551,35 @@
       <li class="dropdown">
         Programs <span style="font-size: 0.8rem; margin-left: 5px;">▼</span>
         <div class="dropdown-content">
-          <a href="#">FullStack Web Development</a>
-          <a href="#">Artificial Intelligence</a>
-          <a href="#">Java Programming</a>
-          <a href="#">UI/UX Design</a>
+          <a href="/fullstackwebdev.html">FullStack Web Development</a>
+          <a href="/AI.html">Artificial Intelligence</a>
+          <a href="/java.html">Java Programming</a>
+          <a href="/uiux.html">UI/UX Design</a>
           <a href="courses.html">View More</a>
         </div>
       </li>
       <li>
-  <a href="about.html" style="text-decoration:none; color:inherit;">
+  <a href="/About/About.html" style="text-decoration:none; color:inherit;">
     About Us
   </a>
 </li>
 <li>
-  <a href="contact.html" style="text-decoration:none; color:inherit;">
+  <a href="/About/contact.html" style="text-decoration:none; color:inherit;">
     Contact Us
   </a>
 </li>
 
     </ul>
   </nav>
-  <button class="btn open-modal-btn">Get Started</button>
+ <button class="btn open-modal-btn">Get Started</button>
 </header>
 
 <section class="hero">
   <div class="hero-text">
-    <h1>Build Your Future<br>With <span>DITHAX SOLUTIONS</span></h1>
+    <h1>Build yout Future <br> With <span>DITHAX SOLUTIONS</span></h1>
     <p>Master in-demand tech skills through expert-led programs and internships.</p>
     <div class="hero-buttons">
-      <a href="courses.html"><button class="btn">Explore Courses</button></a>
+      <a href="/mainpage/courses.html"><button class="btn">Explore Courses</button></a>
       <button class="btn btn-outline open-modal-btn">Get Started</button>
     </div>
   </div>
@@ -735,16 +702,27 @@
           <div class="brand-logo"><img src="https://i.postimg.cc/VNCjKT5p/dithax-logo-removebg-preview.png" height="130" width="120" alt="Dithax Solutions Logo"></div>
           <p class="brand-description">Empowering the next generation with cutting-edge courses and exclusive internship opportunities. Building careers, one student at a time.</p> <br>
 <div style="display:flex; flex-direction:column; gap:0.8rem; align-items:flex-start;"> 
+  <style>
+    li a {
+  text-decoration: none; /* Removes the underline */
+  color: inherit;        /* Keeps the text color the same as the surrounding text */
+}
+
+/* Optional: Add a subtle hover effect so users know it's still clickable */
+li a:hover {
+  opacity: 0.8;
+}
+  </style>
   
      <li>
   <a href="privacy  policy Dithax Solutions.pdf" target="_blank" type="application/pdf">
-    <strong>Privacy Policy:</strong>
+    <strong>Privacy Policy</strong>
   </a>
 </li>
 
 <li>
   <a href="Terms and conditions_Dithax.pdf" target="_blank">
-    <strong>Terms & Conditions:</strong>
+    <strong>Terms & Conditions</strong>
   </a>
 </li>
 
@@ -754,7 +732,7 @@
         
         <div class="footer-section">
           <h3>Quick Links</h3>
-          <div class="footer-links"><a href="courses.html">Courses</a><a href="/about/">About Us</a><a href="/contact/">Contact Us</a></div>
+          <div class="footer-links"><a href="/mainpage/courses.html">Courses</a><a href="/About/About.html">About Us</a><a href="/About/contact.html">Contact Us</a></div>
         </div>
         
         <div class="footer-section">
@@ -782,7 +760,7 @@
       <i class="fa-brands fa-instagram"></i>
     </a>
 
-    <a href="www.linkedin.com/in/dithax-solutions-49a4b2398" 
+    <a href="https://www.linkedin.com/in/dithax-solutions-49a4b2398/" 
        class="social-link" target="_blank" aria-label="Linkedin">
       <i class="fa-brands fa-linkedin"></i>
     </a>
@@ -795,25 +773,65 @@
   </footer>
 
 <script>
-  const modal = document.getElementById("getStartedModal");
-  const btns = document.querySelectorAll(".open-modal-btn");
-  const closeBtn = document.getElementById("closeModal");
 
-  btns.forEach(btn => {
-    btn.onclick = function() {
-      modal.style.display = "flex";
+
+  // 1. SELECT ELEMENTS
+  const modal = document.getElementById('getStartedModal');
+  const closeModal = document.getElementById('closeModal');
+  const leadForm = document.getElementById('leadForm');
+  const submitBtn = document.querySelector('.submit-btn');
+  const modalTitle = document.querySelector('.modal-header h2');
+
+  // 2. OPEN MODAL LOGIC (For "Get Started" and "Book a Demo" buttons)
+  // Usage: <button onclick="openLeadModal('Book a Demo')">Book Demo</button>
+  window.openLeadModal = function(type) {
+    modal.style.display = 'flex';
+    modalTitle.innerText = type; 
+  };
+
+  // 3. CLOSE MODAL LOGIC
+  closeModal.onclick = () => modal.style.display = 'none';
+  window.onclick = (event) => {
+    if (event.target == modal) modal.style.display = 'none';
+  };
+
+  // 4. FORM REQUEST & RESPONSE LOGIC
+  leadForm.addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevents the page from refreshing
+
+    // Show loading state
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = "Processing...";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(this);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Success! Your request has been sent successfully.");
+        this.reset(); // Clears the form fields
+        modal.style.display = 'none'; // Closes the modal
+      } else {
+        alert("Server Error: Unable to send request. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Connection Error: Make sure your Python backend is running at http://127.0.0.1:5000");
+    } finally {
+      // Revert button state
+      submitBtn.innerText = originalBtnText;
+      submitBtn.disabled = false;
     }
   });
 
-  closeBtn.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
+  
 </script>
 
 </body>

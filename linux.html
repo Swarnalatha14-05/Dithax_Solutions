@@ -188,7 +188,7 @@ summary::-webkit-details-marker { display: none; }
 
 <div class="top-section">
   <div class="course-image">
-    <img src="linux1.jpg" alt="AI Course">
+    <img src="images/linux1.jpg" alt="AI Course">
   </div>
 
   <div class="course-details">
@@ -214,23 +214,57 @@ summary::-webkit-details-marker { display: none; }
 <div class="modal" id="formModal">
   <div class="modal-content">
     <span class="close" onclick="closeForm()">&times;</span>
-    <h2>Enroll Now</h2>
 
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="tel" placeholder="Phone Number" required>
+    <h2 id="formTitle">Submit Details</h2>
 
-      <select required>
-        <option value="">Select Program</option>
-        <option>AI Course</option>
-        <option>Data Science</option>
-        <option>Web Development</option>
-        <option>Cloud Computing</option>
-      </select>
+ <form id="enrollmentForm">
+  <input type="text" id="name" name="name" placeholder="Full Name" required>
+  <input type="email" id="email" name="email" placeholder="Email Address" required>
+  <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
 
-      <button type="submit">Submit</button>
-    </form>
+  <select id="program" name="program" required>
+    <option value="">-- Select Program --</option>
+    <option>-- Select Program --</option>
+                <option>FullStackWeb Development</option>
+                <option>Artificial Intelligence</option>
+                <option>Cyber Security</option>
+                <option>Machine Learning</option>
+                <option>Catia</option>
+                <option>Java Programming</option>
+                <option>C Programming</option>
+                <option>AWS</option>
+                <option>Marketing</option>
+                <option>Construction Planning and Management</option>
+                <option>Data Analytics</option>
+                <option>Stock Marketing</option>
+                <option>Food Technology</option>
+                <option>React JS</option>
+                <option>Data Science</option>
+                <option>Python Programming</option>
+                <option>UI/UX Design</option>
+                <option>Digital Marketing</option>
+                <option>Solid Works</option>
+                <option>IoT & Robotics</option>
+                <option>Java FullStack Development</option>
+                <option>Business Analytics</option>
+                <option>AutoCAD</option>
+                <option>Human Resources</option>
+                <option>Finance Management</option>
+                <option>SAP</option>
+                <option>VLSI</option>
+                <option>C++</option>
+                <option>ChatGPT/GenAI</option>
+                <option>Bio Technology</option>
+                <option>Video Editing</option>
+                <option>Linux</option>
+                <option>Power BI</option>
+                <option>SQL</option>
+  </select>
+
+  <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+    <p id="msg"></p>
   </div>
 </div>
 <div class="tabs">
@@ -410,23 +444,56 @@ summary::-webkit-details-marker { display: none; }
   </div>
 </div>
 <script>
-/* =========================
-   MODAL CONTROLS
-========================= */
-function openForm() {
-  document.getElementById("formModal").style.display = "flex";
-}
+// Function to handle form submission
+document.getElementById('enrollmentForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent page refresh
+    
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
 
-function closeForm() {
-  document.getElementById("formModal").style.display = "none";
-}
+    // Prepare the data to match your Flask "request.form" expectation
+    const formData = new FormData(this);
 
-/* Close modal when clicking outside */
-window.onclick = function (e) {
-  const modal = document.getElementById("formModal");
-  if (e.target === modal) {
-    closeForm();
-  }
+    try {
+        // Replace with your actual backend URL if deployed (e.g., https://your-app.herokuapp.com/submit)
+        const response = await fetch('http://127.0.0.1:5000/submit', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Application submitted successfully!");
+            this.reset(); // Clear form
+            closeForm();  // Close modal
+        } else {
+            alert("Submission failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Could not connect to the server.");
+    } finally {
+        submitBtn.innerText = "Submit";
+        submitBtn.disabled = false;
+    }
+});
+
+// Your existing UI functions
+function openForm() { document.getElementById("formModal").style.display = "flex"; }
+function closeForm() { document.getElementById("formModal").style.display = "none"; }
+function showTab(tabId) {
+    document.getElementById('overview').style.display = "none";
+    document.getElementById('syllabus').style.display = "none";
+    document.getElementById(tabId).style.display = "block";
+    const buttons = document.querySelectorAll('.tab-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+  
+window.onclick = function(e) {
+  if (e.target === document.getElementById("formModal")) closeForm();
 };
 
 /* =========================
@@ -454,64 +521,8 @@ function showTab(tabId) {
     }
   });
 }
-/* =========================
-   FORM SUBMISSION (FIXED)
-========================= */
-document.querySelector("#formModal form").addEventListener("submit", async function (e) {
-  e.preventDefault();
 
-  const inputs = e.target.querySelectorAll("input, select");
-  const btn = e.target.querySelector("button");
-
-  const data = {
-    name: inputs[0].value.trim(),
-    email: inputs[1].value.trim(),
-    phone: inputs[2].value.trim(),
-    program: inputs[3].value
-  };
-
-  // Basic validation
-  if (!data.name || !data.email || !data.phone || !data.program) {
-    alert("⚠️ Please fill all fields");
-    return;
-  }
-
-  btn.disabled = true;
-  btn.innerText = "Submitting...";
-
-  try {
-    const res = await fetch("http://127.0.0.1:5000/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-
-    // Check if the HTTP status is 200-299
-    if (!res.ok) {
-       throw new Error('Network response was not ok');
-    }
-
-   /* Inside your fetch try block */
-const result = await res.json();
-
-// This now matches the "success": True from Python
-if (result.success) {
-    alert("✅ Enquiry sent successfully!");
-    e.target.reset();
-    closeForm();
-} else {
-    alert("❌ Failed: " + (result.message || "Server rejected the request"));
-}
-
-  } catch (err) {
-    console.error("Fetch error:", err);
-    alert("❌ Connection failed. Ensure your backend server is running on port 5000.");
-  } finally {
-    btn.disabled = false;
-    btn.innerText = "Submit";
-  }
-});
+  
 </script>
-
 </body>
 </html>

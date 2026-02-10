@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Course - Dithax</title>
+
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+  color: #111827;
+}
+
+/* ===== COURSE SECTION ===== */
+.top-section {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
+}
+
+.course-image {
+  flex: 1 1 40%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-details {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-info, .company-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.enroll-btn {
+  background: #154d21;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 380px;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#msg {
+  margin-top: 12px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COURSE -->
+<div class="top-section">
+  <div class="course-image">
+    <img src="/images/ai.jpeg" alt="AI Course">
+  </div>
+
+  <div class="course-details">
+    <div class="course-info">
+      <h2>AI Course</h2>
+      <p><b>Starts from ₹5,550</b></p>
+      <button class="enroll-btn" onclick="openForm('enroll')">Enroll Now</button>
+    </div>
+
+    <div class="company-card">
+      <h3>Dithax Solutions</h3>
+      <p>dithaxsolutions@gmail.com</p>
+      <button class="enroll-btn" onclick="openForm('enquire')">Enquire Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FORM -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+
+    <h2 id="formTitle">Submit Details</h2>
+
+ <form id="enrollmentForm">
+  <input type="text" id="name" name="name" placeholder="Full Name" required>
+  <input type="email" id="email" name="email" placeholder="Email Address" required>
+  <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+  <select id="program" name="program" required>
+    <option value="">-- Select Program --</option>
+    <option value="FullStackWeb Development">FullStackWeb Development</option>
+    <option value="Bio Technology">Bio Technology</option>
+  </select>
+
+  <button type="submit" id="submitBtn">Submit</button>
+</form>
+
+    <p id="msg"></p>
+  </div>
+</div>
+
+<script>
+// Function to handle form submission
+document.getElementById('enrollmentForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent page refresh
+    
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
+
+    // Prepare the data to match your Flask "request.form" expectation
+    const formData = new FormData(this);
+
+    try {
+        // Replace with your actual backend URL if deployed (e.g., https://your-app.herokuapp.com/submit)
+        const response = await fetch('http://127.0.0.1:5000/submit', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Application submitted successfully!");
+            this.reset(); // Clear form
+            closeForm();  // Close modal
+        } else {
+            alert("Submission failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Could not connect to the server.");
+    } finally {
+        submitBtn.innerText = "Submit";
+        submitBtn.disabled = false;
+    }
+});
+
+// Your existing UI functions
+function openForm() { document.getElementById("formModal").style.display = "flex"; }
+function closeForm() { document.getElementById("formModal").style.display = "none"; }
+function showTab(tabId) {
+    document.getElementById('overview').style.display = "none";
+    document.getElementById('syllabus').style.display = "none";
+    document.getElementById(tabId).style.display = "block";
+    const buttons = document.querySelectorAll('.tab-buttons button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+  
+window.onclick = function(e) {
+  if (e.target === document.getElementById("formModal")) closeForm();
+};
+</script>
+
+</body>
+</html>

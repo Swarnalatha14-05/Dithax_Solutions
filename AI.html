@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C Course - Nxtsync</title>
+<title>AI Course - Dithax</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -54,15 +54,12 @@ body {
 .course-info h2 { margin: 0 0 1rem; font-size: 1.8rem; }
 .price { font-size: 1.3rem; font-weight: 700; color: #f20a0a; margin-bottom: 1rem; }
 
-.enroll-btn {
-  display: inline-block;
+.enroll-btn, .enquire-btn {
   background: #154d21;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 0.9rem;
+  color: white;
   border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -159,24 +156,24 @@ summary::-webkit-details-marker { display: none; }
 }
 
 .modal-content input,
-.modal-content select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
+.modal-content select,
 .modal-content button {
   width: 100%;
   padding: 10px;
-  background: #16a34a;
+  margin-top: 10px;
+}
+
+.modal-content button {
+  background: green;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
 }
+#msg {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
 
 @media(max-width: 900px) {
   .top-section { flex-direction: column; }
@@ -188,21 +185,21 @@ summary::-webkit-details-marker { display: none; }
 
 <div class="top-section">
   <div class="course-image">
-    <img src="images/AWS-image.png" alt="AI Course">
+    <img src="/images/ai.jpeg" alt="AI Course">
   </div>
 
   <div class="course-details">
     <div class="course-info">
-      <h2>AWS Course</h2>
+      <h2>AI Course</h2>
       <div class="price">Starts from ₹5,550.00</div>
-      <button class="enroll-btn" onclick="openForm()">Enroll Now</button>
+      <button class="enroll-btn" onclick="openForm('enroll')">Enroll Now</button>
     </div>
 
     <div class="company-card">
       <h3>Dithax Solutions.</h3>
       <div class="email-box">dithaxsolutions@gmail.com</div>
       <div class="company-btns">
-        <button class="enquire" onclick="openForm()">Enquire Now</button>
+        <button class="enquire-btn" onclick="openForm('enquire')">Enquire Now</button>
         <button class="call">📞 Call Now</button>
       </div>
       <p>Dithax Pvt. Ltd. is a dynamic edtech company committed to bridging the gap between academic learning and real-world application.</p>
@@ -267,6 +264,8 @@ summary::-webkit-details-marker { display: none; }
     <p id="msg"></p>
   </div>
 </div>
+</div>
+
 <div class="tabs">
   <div class="tab-buttons">
     <button class="active" onclick="showTab('overview')">Overview</button>
@@ -278,172 +277,196 @@ summary::-webkit-details-marker { display: none; }
   <p>
     Our mission is to redefine learning with industry-relevant projects, internships, and courses designed to build job-ready skills. 
     Whether it’s AI, Data Science, Web Development, or Cloud Computing — our programs combine theory with practice for career success.
-  <ul>
-    <li>Core Programming Language for Modern Software Development</li>
-    <li>Best Suited for Low-Level, System, and Embedded Programming</li>
-    <li>Strengthens Logical Reasoning and Analytical Skills</li>
-    <li>Extensively Used in Operating Systems, IoT, and Robotics Applications</li>
-    <li>Builds a Strong Foundation for C++, Java, and Python</li>
-    <li>High Industry Demand in Core and Performance-Critical Software Roles</li>
-</ul>
-
+    <ul>
+        <li>Automation of Repetitive Tasks</li>
+        <li>Enhanced Decision-Making</li>
+        <li>AI-Driven Personalization</li>
+        <li>Innovation & Creativity in Industries</li>
+        <li>Improved Accuracy & Precision</li>  
+        <li>Solving Complex Problems Efficiently</li>
+        <li>Economic Growth & Career Opportunities</li>
+        <li>Scalability Across Domains</li>
+        <li>Enhancing Human Capabilities with AI</li>
+    </ul>
     </p>
   </div>
 
-<div id="syllabus" class="tab-content" style="display:none;">
+  <div id="syllabus" class="tab-content" style="display:none;">
     <h3>Syllabus</h3>
     <div class="container">
-
+     
         <details>
-            <summary>
-                <span class="module-number">Module 01</span>
-                <span class="module-title">Introduction to Cloud Computing & AWS</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>Basics of Cloud Computing</b></li>
-                    <li><b>AWS Global Infrastructure & Services</b></li>
-                    <li><b>Benefits of AWS Cloud</b></li>
-                    <li><b>AWS Free Tier & Account Setup</b></li>
-                </ul>
-            </div>
-        </details>
+        <summary>
+            <span class="module-number">Module 01</span>
+            <span class="module-title">Introduction to Artificial Intelligence</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Evolution & History</b></li>
+                <li><b>AI vs. Human Intelligence</b> </li>
+                <li><b>Industry Applications</b></li>
+                <li><b>Ethics & Impact</b></li>
+            </ul>
+        </div>
+    </details>
 
+    <details>
+        <summary>
+            <span class="module-number">Module 02</span>
+            <span class="module-title">AI Fundamentals</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Key AI Concepts & Terminology</b></li>
+                <li><b>Intelligent Agents & Environments</b> </li>
+                <li><b>Problem-Solving & Search Algorithms</b> </li>
+                <li><b>Introduction to Knowledge Representation</b> </li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 03</span>
+            <span class="module-title">AI Programming & Tools</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Introduction to Python for AI</b></li>
+                <li><b>Essential Libraries (NumPy, Pandas, Matplotlib)</b></li>
+                <li><b>Programming Constructs & Jupyter Notebooks</b></li>
+                <li><b>AI Development Environments (Anaconda, Google Collab).</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 04</span>
+            <span class="module-title">Data Handling & Preprocessing</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Structured vs. Unstructured Data </b></li>
+                <li><b>Data Collection, Cleaning & Transformation</b></li>
+                <li><b>Exploratory Data Analysis (EDA)</b></li>
+                <li><b>Feature Engineering & Selection.</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 05</span>
+            <span class="module-title">Machine Learning Essentials</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Fundamentals of Machine Learning </b></li>
+                <li><b>Supervised vs. Unsupervised Learning</b></li>
+                <li><b>Key ML Algorithms (Decision Trees, SVM, KNN) </b></li>
+                <li><b>Regression Models (Linear & Polynomial Regression).</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 06</span>
+            <span class="module-title">Advanced Machine Learning</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Ensemble Methods (Random Forest, XGBoost) </b></li>
+                <li><b>Clustering Techniques (K-Means, Hierarchical Clustering)</b></li>
+                <li><b>Dimensionality Reduction (PCA, LDA) </b></li>
+                <li><b>Model Evaluation & Validation Techniques.</b></li>
+            </ul>
+        </div>
+    </details>
         <details>
-            <summary>
-                <span class="module-number">Module 02</span>
-                <span class="module-title">AWS Core Services (Compute, Storage & Networking)</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>S3, EBS & EFS – Storage Solutions</b></li>
-                    <li><b>EC2, Auto Scaling & Elastic Load Balancer (ELB)</b></li>
-                    <li><b>VPC, Route 53 & CloudFront – Networking Essentials</b></li>
-                </ul>
-            </div>
-        </details>
-
+        <summary>
+            <span class="module-number">Module 07</span>
+            <span class="module-title">Deep Learning & Neural Networks</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Neural Network Basics & Perceptrons </b></li>
+                <li><b>Backpropagation & Optimization Techniques</b></li>
+                <li><b>Deep Learning Frameworks (TensorFlow, Keras) </b></li>
+                <li><b>Hyperparameter Tuning & Model Optimization.</b></li>
+            </ul>
+        </div>
+    </details>
+     <details>
+        <summary>
+            <span class="module-number">Module 08</span>
+            <span class="module-title">Natural Language Processing (NLP)</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Introduction to NLP & Text Processing</b></li>
+                <li><b>Tokenization, Stemming, Lemmatization</b></li>
+                <li><b>Sentiment Analysis & Named Entity Recognition (NER) </b></li>
+                <li><b>Transformer Models (BERT, GPT) & Chatbots.</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 09</span>
+            <span class="module-title">Reinforcement Learning</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Introduction to RL Concepts </b></li>
+                <li><b>Markov Decision Processes (MDPs)</b></li>
+                <li><b> Q-Learning & Deep Q-Networks(DQNs) </b></li>
+                <li><b>Policy Gradient Methods.</b></li>
+            </ul>
+        </div>
+    </details>
+    <details>
+        <summary>
+            <span class="module-number">Module 10</span>
+            <span class="module-title">Computer Vision & AI Applications </span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Image Processing Techniques </b></li>
+                <li><b>Convolutional Neural Networks (CNNs)</b></li>
+                <li><b> Object Detection & Image Recognition </b></li>
+                <li><b>AI in Speech Recognition & Healthcare.</b></li>
+            </ul>
+        </div>
+    </details>
         <details>
-            <summary>
-                <span class="module-number">Module 03</span>
-                <span class="module-title">AWS Security & Compliance</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>AWS Identity & Access Management (IAM)</b></li>
-                    <li><b>AWS Security Groups & Network ACLs (NACLs)</b></li>
-                    <li><b>AWS Compliance & Shared Responsibility Model</b></li>
-                </ul>
-            </div>
-        </details>
-
+        <summary>
+            <span class="module-number">Module 11</span>
+            <span class="module-title">AI Ethics & Responsible AI </span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Ethical Considerations & Bias in AI </b></li>
+                <li><b>Fairness & Transparency in AI Models</b></li>
+                <li><b> Privacy & Security in AI Systems </b></li>
+                <li><b>Future Trends: Edge AI, Explainable AI (XAI).</b></li>
+            </ul>
+        </div>
+    </details>
         <details>
-            <summary>
-                <span class="module-number">Module 04</span>
-                <span class="module-title">AWS Databases & Data Management</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>Amazon RDS, DynamoDB & Redshift</b></li>
-                    <li><b>AWS Database Migration Service (DMS)</b></li>
-                    <li><b>Data Warehousing & Big Data Solutions</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 05</span>
-                <span class="module-title">AWS DevOps & Automation</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>AWS CLI & SDKs</b></li>
-                    <li><b>AWS CodePipeline, CodeBuild & CodeDeploy</b></li>
-                    <li><b>Infrastructure as Code (Terraform & CloudFormation)</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 06</span>
-                <span class="module-title">AWS Machine Learning & AI Services</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>Amazon SageMaker for ML Model Training</b></li>
-                    <li><b>AWS Lex, Polly & Rekognition</b></li>
-                    <li><b>AI-Powered Chatbots & Analytics</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 07</span>
-                <span class="module-title">AWS Serverless Computing</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>AWS Lambda – Serverless Functions</b></li>
-                    <li><b>API Gateway – Building Scalable APIs</b></li>
-                    <li><b>AWS Step Functions & EventBridge</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 08</span>
-                <span class="module-title">AWS Cost Optimization & Best Practices</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>AWS Pricing Models & Cost Management</b></li>
-                    <li><b>AWS Well-Architected Framework</b></li>
-                    <li><b>Cost-Effective Cloud Architecture Design</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 09</span>
-                <span class="module-title">AWS Deployment & CI/CD Pipelines</span>
-            </summary>
-            <div class="content">
-                <ul>
-                    <li><b>AWS Elastic Beanstalk & ECS/EKS</b></li>
-                    <li><b>CI/CD Pipelines Using AWS DevOps Tools</b></li>
-                    <li><b>Monitoring & Logging with CloudWatch & X-Ray</b></li>
-                </ul>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                <span class="module-number">Module 10</span>
-                <span class="module-title">Capstone Projects & Industry Case Studies</span>
-            </summary>
-            <div class="content">
-               <ul>
-    <li><b>Cost-Effective and Highly Scalable Cloud Solutions</b></li>
-    <li><b>Strong Industry Demand for Cloud Professionals</b></li>
-    <li><b>Secure, Reliable, and High-Availability Infrastructure</b></li>
-    <li><b>Excellent Career Growth with Competitive Salaries</b></li>
-    <li><b>Wide Range of Versatile Cloud Services</b></li>
-    <li><b>Seamless Integration with DevOps and AI/ML Technologies</b></li>
-    <li><b>Industry-Leading Cloud Service Provider</b></li>
-</ul>
-
-            </div>
-        </details>
-
-    </div>
-</div>
-
-
+        <summary>
+            <span class="module-number">Module 12</span>
+            <span class="module-title">Capstone Projects & Industry Case Studies</span>
+        </summary>
+        <div class="content">
+            <ul>
+                <li><b>Hands-on Real-Time AI Projects</b></li>
+                <li><b>AI Applications in Finance, Healthcare & Retail</b></li>
+                <li><b> AI-Powered Automation & Chatbot Development </b></li>
+                <li><b> Industry Collaboration & Research-Based Projects .</b></li>
+            </ul>
+        </div>
+    </details>
+    
+        </div>
+  </div>
 </div>
 <script>
 // Function to handle form submission
