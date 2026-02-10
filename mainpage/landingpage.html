@@ -193,19 +193,14 @@
     font-size: 16px;
   }
 }
-
-
-
-
-
-
-
-  :root {
+:root {
     --primary-glow: #ff00cc;
     --secondary-glow: #8e2de2;
     --bg-dark: #000;
     --card-bg: rgba(255, 255, 255, 0.06);
     --border-glass: rgba(255, 255, 255, 0.1);
+    --accent: #ff00cc;
+
   }
 
   * {
@@ -513,14 +508,15 @@
 
 <div class="modal-overlay" id="getStartedModal">
   <div class="modal-content">
-    <div class="modal-header">
-      <button class="btn btn-outline open-modal-btn">Get Started</button>
-
-<button class="btn btn-outline" onclick="openLeadModal('Get Started')">Get Started</button>
+    <div class="modal-header" style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2 id="modalTitle">Get Started</h2>
+      <span class="close-modal" id="closeModal" style="cursor:pointer; font-size: 24px; color: #ff4d4d;">&times;</span>
+        </div>
       <div class="form-group">
         <label>Name</label>
         <input type="text" name="name" placeholder="Enter your name" required>
       </div>
+      <form id="leadForm">
       <div class="form-group">
         <label>Email</label>
         <input type="email" name="email" placeholder="Enter your email" required>
@@ -571,7 +567,7 @@
 
     </ul>
   </nav>
- <button class="btn open-modal-btn">Get Started</button>
+    <button class="btn open-modal-btn" style="padding: 10px 20px; border-radius: 20px; background: var(--primary-glow); border:none; color:white; cursor:pointer;">Get Started</button>
 </header>
 
 <section class="hero">
@@ -676,8 +672,9 @@
   <h2 class="section-title"><span>Get In</span> Touch</h2>
   <div class="contact-grid">
     <div class="contact-card">
-      <h3>Request Demo</h3>
-      <p>Get a personalized demo of our courses and see how we can help accelerate your career.</p>
+<div style="margin-top: 25px;">
+            <button class="open-modal-btn" style="padding: 15px 30px; border-radius: 30px; background: var(--primary-glow); border:none; color:white; font-weight:bold; cursor:pointer;">Request Demo</button>
+        </div>      <p>Get a personalized demo of our courses and see how we can help accelerate your career.</p>
       <span class="contact-info-box open-modal-btn">Request Demo</span>
     </div>
 
@@ -773,66 +770,53 @@ li a:hover {
   </footer>
 
 <script>
+    const modal = document.getElementById("getStartedModal");
+    const openBtns = document.querySelectorAll(".open-modal-btn");
+    const closeBtn = document.getElementById("closeModal");
+    const modalTitle = document.getElementById("modalTitle");
 
+    openBtns.forEach(btn => {
+        btn.onclick = function() {
+            modalTitle.innerText = this.innerText.includes("Demo") ? "Book a Demo" : "Get Started";
+            modal.style.display = "flex";
+        }
+    });
 
-  // 1. SELECT ELEMENTS
-  const modal = document.getElementById('getStartedModal');
-  const closeModal = document.getElementById('closeModal');
-  const leadForm = document.getElementById('leadForm');
-  const submitBtn = document.querySelector('.submit-btn');
-  const modalTitle = document.querySelector('.modal-header h2');
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
 
-  // 2. OPEN MODAL LOGIC (For "Get Started" and "Book a Demo" buttons)
-  // Usage: <button onclick="openLeadModal('Book a Demo')">Book Demo</button>
-  window.openLeadModal = function(type) {
-    modal.style.display = 'flex';
-    modalTitle.innerText = type; 
-  };
+    const leadForm = document.getElementById('leadForm');
+    const submitBtn = document.getElementById('submitBtn');
 
-  // 3. CLOSE MODAL LOGIC
-  closeModal.onclick = () => modal.style.display = 'none';
-  window.onclick = (event) => {
-    if (event.target == modal) modal.style.display = 'none';
-  };
+    leadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        submitBtn.innerText = "Sending...";
+        submitBtn.disabled = true;
 
-  // 4. FORM REQUEST & RESPONSE LOGIC
-  leadForm.addEventListener('submit', async function(e) {
-    e.preventDefault(); // Prevents the page from refreshing
+        const formData = new FormData(this);
 
-    // Show loading state
-    const originalBtnText = submitBtn.innerText;
-    submitBtn.innerText = "Processing...";
-    submitBtn.disabled = true;
+        try {
+            const response = await fetch('http://127.0.0.1:5000/submit', {
+                method: 'POST',
+                body: formData
+            });
 
-    const formData = new FormData(this);
+            const result = await response.json();
 
-    try {
-      const response = await fetch('http://127.0.0.1:5000/submit', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        alert("Success! Your request has been sent successfully.");
-        this.reset(); // Clears the form fields
-        modal.style.display = 'none'; // Closes the modal
-      } else {
-        alert("Server Error: Unable to send request. Please try again later.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Connection Error: Make sure your Python backend is running at http://127.0.0.1:5000");
-    } finally {
-      // Revert button state
-      submitBtn.innerText = originalBtnText;
-      submitBtn.disabled = false;
-    }
-  });
-
-  
+            if (result.success) {
+                alert("🎉 Success! Our team will contact you soon.");
+                leadForm.reset();
+                modal.style.display = "none";
+            } else {
+                alert("⚠️ Submission failed.");
+            }
+        } catch (error) {
+            alert("❌ Server Error. Is your Flask backend running?");
+        } finally {
+            submitBtn.innerText = "Submit Request";
+            submitBtn.disabled = false;
+        }
+    });
 </script>
-
 </body>
 </html>
