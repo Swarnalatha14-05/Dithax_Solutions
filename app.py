@@ -7,9 +7,9 @@ app = Flask(__name__)
 CORS(app)
 
 # 🔐 EMAIL CONFIG
-SENDER_EMAIL = "nxtsync753@gmail.com"      # sender gmail
-APP_PASSWORD = "lwamwggvujfwjfna"           # gmail app password
-COMPANY_EMAIL = "swarnaguggilam03@gmail.com"
+SENDER_EMAIL = "nxtsync753@gmail.com"     
+APP_PASSWORD = "lwamwggvujfwjfna"           
+COMPANY_EMAIL = "dithaxsolutions@gmail.com"
 
 # 🏠 HOME ROUTE
 @app.route("/", methods=["GET"])
