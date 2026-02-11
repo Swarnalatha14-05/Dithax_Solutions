@@ -107,19 +107,22 @@
     .submit-btn:hover { box-shadow: 0 5px 18px rgba(255, 0, 204, 0.45); transform: translateY(-2px); }
     </style>
 
-    <div id="form-modal">
+</head>
+<body>
+
+        <div id="form-modal">
     <div class="modal-content">
         <div class="close-modal" id="closeBtn">&times;</div>
-        <h2>Get Started</h2>
-        <form>
+        <h2 id="modalTitle" class="text-2xl mb-6 font-bold">Get Started</h2>
+        <form id="leadForm">
             <label>Name</label>
-            <input type="text" placeholder="Enter your name">
+            <input type="text" name="name" required placeholder="Enter your name">
             <label>Email</label>
-            <input type="email" placeholder="Enter your email">
+            <input type="email" name="email" required placeholder="Enter your email">
             <label>Phone</label>
-            <input type="tel" placeholder="Enter your phone number">
+            <input type="tel" name="phone" required placeholder="Enter your phone number">
             <label>Program Interested</label>
-            <select>
+            <select name="program" required class="w-full p-2 mb-4 text-black rounded">
                 <option>-- Select Program --</option>
                 <option>FullStackWeb Development</option>
                 <option>Artificial Intelligence</option>
@@ -156,21 +159,18 @@
                 <option>Power BI</option>
                 <option>SQL</option>
             </select>
-            <button type="submit" class="submit-btn">Submit</button>
+<button type="submit" id="submitBtn" class="submit-btn">Submit</button>
         </form>
     </div>
 </div>
-</head>
-<body>
-
     <nav class="flex items-center justify-between px-8 py-4 bg-black/60 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div class="flex items-center">
             <img src="https://i.postimg.cc/VNCjKT5p/dithax-logo-removebg-preview.png" alt="DITHAX Logo" class="h-20 w-auto">
         </div>
         
-        <button class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-7 py-2.5 rounded-full font-bold hover:opacity-90 transition shadow-lg shadow-purple-500/20">
-            Get Started
-        </button>
+        <button class="open-modal-btn bg-purple-600 px-6 py-2 rounded-full font-bold">
+        Get Started
+    </button>
     </nav>
 
     <header class="text-center pt-20 pb-12 px-4">
@@ -199,8 +199,8 @@ const courses = [
             { title: "FullStack Web Development", desc: "Full-stack web development is the practice of building both the frontend and backend of a web application, handling user interfaces, server logic, databases, and deployment.", img: "https://static.vecteezy.com/system/resources/thumbnails/007/316/623/small_2x/cyber-security-internet-and-networking-concept-businessman-hand-working-mobile-phone-on-laptop-computer-background-free-photo.jpg", link: "/fullstackwebdev.html" },            
             { title: "Artificial Intelligence", desc: "Artificial Intelligence is the technology that enables machines to simulate human intelligence, such as learning, reasoning, and decision-making, to solve problems and automate tasks.", img: "https://www.cxoinsightme.com/wp-content/uploads/2020/07/AI_shutterstock_1722492775-scaled.jpg", link: "/AI.html"  },
             { title: "Cyber Security", desc: "Cyber Security focuses on protecting systems, networks, and data from cyber threats by preventing attacks, detecting vulnerabilities, and ensuring safe digital operations.", img: "https://images.wallpapersden.com/image/download/cybersecurity-core_bmdrZ2mUmZqaraWkpJRmbmdsrWZlbWU.jpg", link: "/cybersecurity.html"  },
-            { title: "Machine Learing", desc: "Machine learning helps us learn patterns from data so we can make predictions or decisions without being explicitly programmed.", img: "https://cdn.pixabay.com/photo/2024/01/29/22/47/ai-generated-8540915_1280.jpg", link: "/ML.html"  },
-            { title: "Catia", desc: "CATIA helps us learn to design, model, and analyze complex 3D mechanical and industrial products.", img: "https://aosspic10001.websiteonline.cn/prob119b84b/image/catia-v5-hero-banner-1920x696.jpg", link: "/Catia.html"  },
+            { title: "Machine Learning", desc: "Machine learning helps us learn patterns from data so we can make predictions or decisions without being explicitly programmed.", img: "https://cdn.pixabay.com/photo/2024/01/29/22/47/ai-generated-8540915_1280.jpg", link: "/ML.html"  },
+            { title: "CATIA", desc: "CATIA helps us learn to design, model, and analyze complex 3D mechanical and industrial products.", img: "https://aosspic10001.websiteonline.cn/prob119b84b/image/catia-v5-hero-banner-1920x696.jpg", link: "/Catia.html"  },
             { title: "Java Programming", desc: "Java programming helps us learn to build secure, platform-independent applications using object-oriented concepts", img: "https://wallpaperaccess.com/full/3865706.jpg", link: "/java.html"  },
             { title: "C Programming", desc: "C programming helps us learn low-level programming, memory management, and how software interacts with hardware..", img: "https://images.wallpapersden.com/image/download/programming-coding-language_bGhpbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg", link: "/c.html"  },
             { title: "AWS", desc: "AWS helps us learn how to build, deploy, and manage scalable applications using cloud computing services.", img: "https://tse3.mm.bing.net/th/id/OIP.6qyLCAMA5W8EDXTBmhE1nwHaDv?pid=Api&P=0&h=180", link: "/aws.html"  },
@@ -230,6 +230,8 @@ const courses = [
             { title: "Linux", desc: "Linux is an open-source operating system used to manage hardware and software efficiently, widely used in servers, development, and cloud environments.", img: "https://images3.alphacoders.com/116/thumb-1920-116875.jpg", link: "/linux.html"  },
             { title: "Power BI", desc: "Power BI is a business intelligence tool by Microsoft used to analyze data and create interactive dashboards and reports for better decision-making.", img: "https://media.istockphoto.com/id/1480239219/photo/an-analyst-uses-a-computer-and-dashboard-for-data-business-analysis-and-data-management.jpg?s=1024x1024&w=is&k=20&c=r4EpNWC4YNZMY-A3jIZjCAbcsHPO5KhJa6h6Cov44QA=", link: "/Powerbi.html"  },
             { title: "SQL", desc: "SQL (Structured Query Language) is used to store, retrieve, and manage data in relational databases efficiently.", img: "https://as1.ftcdn.net/v2/jpg/05/08/28/24/1000_F_508282415_kPLm9LiHsPSxwURuDI2XlNDNADywGcPK.jpg", link: "/sql.html" },
+            { title: "Embedded Systems", desc: "Embedded systems are specialized computer systems designed to perform specific functions within electronic devices by integrating hardware and software for real-time operation.", img: "https://www.devx.com/wp-content/uploads/20-Real-World-Examples-of-Embedded-Systems.jpg", link: "/Embedded_Systems.html" },
+
 ];
         const container = document.getElementById('course-container');
 
@@ -259,26 +261,59 @@ const courses = [
         });
 
        
+// Modal Working
 const modal = document.getElementById('form-modal');
-const openBtn = document.querySelector('nav button');
+const openBtns = document.querySelectorAll('.open-modal-btn');
 const closeBtn = document.getElementById('closeBtn');
 
-
-openBtn.addEventListener('click', () => {
-    modal.style.display = 'flex';
+openBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        modal.style.display = "flex";
+    });
 });
-
 
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
+    modal.style.display = "none";
 });
-
 
 window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
+    if (e.target === modal) modal.style.display = "none";
 });
-    </script>
+
+// Backend Connection
+const leadForm = document.getElementById('leadForm');
+const submitBtn = document.getElementById('submitBtn');
+
+leadForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/submit', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("🎉 Success! Our team will contact you soon.");
+            leadForm.reset();
+            modal.style.display = "none";
+        } else {
+            alert("⚠ Submission failed.");
+        }
+    } catch (error) {
+        alert("❌ Server Error. Is Flask running?");
+    }
+
+    submitBtn.innerText = "Submit";
+    submitBtn.disabled = false;
+});
+
+</script>
 </body>
 </html>
